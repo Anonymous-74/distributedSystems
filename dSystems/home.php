@@ -95,7 +95,7 @@
 	<main class="content">
 		<div class="content-header ui-content-header hidden">
 			<div class="container">
-				
+				<h3 class="content-heading">Folders</h3>
 			</div>
 		</div>
 		<div class="container">
@@ -129,10 +129,10 @@
 					<span class="fbtn-text fbtn-text-left">Create New Folder</span>
 					<span class="icon">folder</span>
 				</a>
-				<!--<a class="fbtn fbtn-green waves-attach waves-circle waves-effect" href="#">
-					<span class="fbtn-text fbtn-text-left"></span>
-					<span class="icon"></span>
-				</a>-->
+				<a class="fbtn fbtn-green waves-attach waves-circle waves-effect" href="#upload" data-toggle="modal">
+					<span class="fbtn-text fbtn-text-left">Upload File</span>
+					<span class="icon">backup</span>
+				</a>
 			</div>
 		</div>
 	</div>
@@ -141,14 +141,14 @@
 	<div aria-hidden="true" class="modal  fade" id="newfolder" role="dialog" tabindex="-1">
 	    <div class="modal-dialog modal-xs">
 	        <div class="modal-content">
-				<form method="POST" action="dir/create_folder.php">
+				<form method="POST" action="include/new_folder.php">
 					<div class="modal-heading">
 						<p class="modal-title">Folder Name</p>
 					</div>
 					<div class="modal-inner">
 						<div class="form-group form-group-label">
 							<label class="floating-label" for="input-password">Name</label>
-							<input class="form-control" id="folder-name" type="text">
+							<input class="form-control" id="folder-name" type="text" name="name">
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -161,16 +161,40 @@
 			</div>
 	    </div>
 	</div>
+ 
+	<div aria-hidden="true" class="modal  fade" id="upload" role="dialog" tabindex="-1">
+	    <div class="modal-dialog modal-xs">
+	        <div class="modal-content">
+				<form method="POST" action="#">
+					<div class="modal-heading">
+						<p class="modal-title">Upload File</p>
+					</div>
+					<div class="modal-inner">
+						<div class="form-group form-group-label">
+							<label class="floating-label" for="input-password">Loacation</label>
+							<input class="form-control" id="folder-name" type="file" name="filename">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<p class="text-right">
+							<a class="btn btn-flat btn-brand waves-attach waves-effect" data-dismiss="modal">Cancel</a>
+							<button class="btn btn-flat btn-brand-accent waves-attach waves-effect" type="submit">Upload</button>
+						</p>
+					</div>
+				</form>
+			</div>
+	    </div>
+	</div>
 
 	<div aria-hidden="true" class="modal  fade" id="categories" role="dialog" tabindex="-1">
 	    <div class="modal-dialog modal-xs">
 	        <div class="modal-content">
-				<form method="POST" action="dir/create_folder.php">
+				<form method="POST" action="include/categories.php">
 					<div class="modal-heading">
 						<p class="modal-title">Categories</p>
 					</div>
 					<div class="modal-inner">
-						
+						<?php $obj->user_categories($_SESSION['SESS_USER_ID'],$conn);?>
 					</div>
 					<div class="modal-footer">
 						<p class="text-right">
