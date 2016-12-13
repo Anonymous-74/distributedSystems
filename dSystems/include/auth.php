@@ -7,5 +7,4 @@
 		header("location: index.php");
 		exit();
 	}
-	//if user session expires
 ?>

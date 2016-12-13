@@ -27,8 +27,13 @@
 	
 	
 
-	switch ($message) {
+	switch ($message){
 		case $message:
+			//Checks to see if message is a command
+			if($message[0] == '/'){
+				$_SESSION['command'] = $message;
+			}
+
 			//Create query
 			$query="SELECT * FROM `bot_sense` WHERE `message` = '$message'";
 			$result=mysqli_query($conn, $query);
@@ -41,7 +46,7 @@
 
 					file_get_contents($website."/sendmessage?parse_mode=markdown&chat_id=".$chatId."&text=".$response);		
 				}else{
-					switch ($message) {
+					switch ($_SESSION['command']) {
 						//File Options
 							case '/uploadfile':
 								file_get_contents($website."/sendmessage?chat_id=".$chatId."&text={$message}");
@@ -59,14 +64,22 @@
 								file_get_contents($website."/sendmessage?chat_id=".$chatId."&text={$message}");
 								break;
 							case '/list':
-								
 								file_get_contents($website."/sendmessage?chat_id=".$chatId."&text={$message}");
 								break;
 
 						
 						//Folder Options
-							case '/newfile':
-								file_get_contents($website."/sendmessage?chat_id=".$chatId."&text={$message}");
+							case '/newfolder':
+								$folder_name = $obj->clean($conn,$message);
+								$directoryName = '../cloud/'.$_SESSION['SESS_USER_ID'].'/'.$folder_name;
+							 
+								//Check if the directory already exists.
+								if(!is_dir($directoryName)){
+								    mkdir($directoryName, 0755, true);
+								   	$obj->send_message($chatId, "Your Folder"." \"{$folder_name}\" "."was created successfully.");
+								}else{
+									$obj->send_message($chatId, "Error creating folder!");
+								}
 								break;
 							case '/renamefolder':
 								file_get_contents($website."/sendmessage?chat_id=".$chatId."&text={$message}");

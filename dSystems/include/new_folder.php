@@ -9,7 +9,7 @@
 
 	$obj = new dSystems();
 
-	$folder_name = $obj->clean($_POST['name']);
+	$folder_name = $obj->clean($conn,$_POST['name']);
 
 	$directoryName = '../cloud/'.$_SESSION['SESS_USER_ID'].'/'.$folder_name;
  
