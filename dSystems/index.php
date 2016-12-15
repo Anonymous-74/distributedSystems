@@ -1,11 +1,13 @@
-
+<?php
+	require_once 'include/sess.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<meta content="IE=edge" http-equiv="X-UA-Compatible">
 	<meta content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width" name="viewport">
-	<title>Login - Material</title>
+	<title>Login</title>
 
 	<!-- css -->
 	<link href="css/base.min.css" rel="stylesheet">
@@ -74,7 +76,7 @@
 						</div>
 						<div class="clearfix">
 							<p class="margin-no-top pull-left"><a class="btn btn-flat btn-brand waves-attach" href="javascript:void(0)">Need help?</a></p>
-							<p class="margin-no-top pull-right"><a class="btn btn-flat btn-brand waves-attach" href="javascript:void(0)">Create an account</a></p>
+							<p class="margin-no-top pull-right"><a class="btn btn-flat btn-brand waves-attach" href="signup.php">Create an account</a></p>
 						</div>
 					</section>
 				</div>

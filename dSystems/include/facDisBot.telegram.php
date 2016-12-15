@@ -64,13 +64,21 @@
 								file_get_contents($website."/sendmessage?chat_id=".$chatId."&text={$message}");
 								break;
 							case '/list':
-								file_get_contents($website."/sendmessage?chat_id=".$chatId."&text={$message}");
+								//$obj->user_dir_list($user_dir);
+								$listArray=$obj->user_dir_list($_SESSION['SESS_USER_ID']);
+								$list="";
+								foreach ($listArray as $key) {
+									$list.=$key;
+								}
+								echo $list;
+								$obj->send_message($chatId,"**".$list);
+								//file_get_contents($website."/sendmessage?chat_id=".$chatId."&text={$list}");
 								break;
 
 						
 						//Folder Options
 							case '/newfolder':
-								$folder_name = $obj->clean($conn,$message);
+								$folder_name = $obj->clean($message);
 								$directoryName = '../cloud/'.$_SESSION['SESS_USER_ID'].'/'.$folder_name;
 							 
 								//Check if the directory already exists.

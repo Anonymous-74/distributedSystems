@@ -101,9 +101,10 @@
 		<div class="container">
 			<div class="ui-card-wrap" id="page-content">
 				<div class="row">
-					<?php $obj->check_user_categories($_SESSION['SESS_USER_ID'],$conn);?>
-					
-					
+					<?php 
+						$obj->user_categories($_SESSION['SESS_USER_ID'],$conn);
+						$obj->user_folders($_SESSION['SESS_USER_ID'],$conn);
+					?>
 				</div>
 			</div>	
 		</div>
@@ -127,11 +128,11 @@
 				</a>
 				<a class="fbtn fbtn-brand waves-attach waves-circle waves-light waves-effect" href="#newfolder" data-toggle="modal">
 					<span class="fbtn-text fbtn-text-left">Create New Folder</span>
-					<span class="icon">folder</span>
+					<span class="icon">create_new_folder</span>
 				</a>
 				<a class="fbtn fbtn-green waves-attach waves-circle waves-effect" href="#upload" data-toggle="modal">
 					<span class="fbtn-text fbtn-text-left">Upload File</span>
-					<span class="icon">backup</span>
+					<span class="icon">file_upload</span>
 				</a>
 			</div>
 		</div>
@@ -194,7 +195,7 @@
 						<p class="modal-title">Categories</p>
 					</div>
 					<div class="modal-inner">
-						<?php $obj->user_categories($_SESSION['SESS_USER_ID'],$conn);?>
+						<?php $obj->add_user_categories($_SESSION['SESS_USER_ID'],$conn);?>
 					</div>
 					<div class="modal-footer">
 						<p class="text-right">

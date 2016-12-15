@@ -9,11 +9,11 @@
 
 	$obj = new dSystems  ();
 
-	$fullname = $obj->clean($conn,$_GET['fullname']);
-	$username = $obj->clean($conn,$_GET['username']);
-	$email = $obj->clean($conn,$_GET['email']);
-	$password  = $obj->clean($conn,$_GET['password']);
-	$tel = $obj->clean($conn,$_GET['tel']);
+	$fullname = $obj->clean($_GET['fullname']);
+	$username = $obj->clean($_GET['username']);
+	$email = $obj->clean($_GET['email']);
+	$password  = $obj->clean($_GET['password']);
+	$tel = $obj->clean($_GET['tel']);
 	$first_name=ucwords(explode(' ',trim($fullname))[0]);
 	$last_name=ucwords(explode(' ',trim($fullname))[1]);
 

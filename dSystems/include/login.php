@@ -9,8 +9,8 @@
 
 	$obj = new dSystems  ();
 
-	$username = $obj->clean($conn,$_GET['username']);
-	$password  = $obj->clean($conn,$_GET['password']);
+	$username = $obj->clean($_GET['username']);
+	$password  = $obj->clean($_GET['password']);
 
 	//Create query
 	$query="SELECT * FROM `users` WHERE (`username`='$username' OR `email`='$username') AND `password`='".sha1($password)."'";
