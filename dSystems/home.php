@@ -14,11 +14,36 @@
 	<title>Home</title>
 
 	<!-- css -->
-	<link href="css/base.min.css" rel="stylesheet">
-	<link href="css/project.min.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet">
+	<link href="css/base.css" rel="stylesheet">
+	<link href="css/project.css" rel="stylesheet">
+
 	<!-- favicon -->
 	<!-- ... -->
+
+	<style type="text/css">
+		/*****************Home Ui******************/
+		#gn > a{
+		  text-decoration: none;
+		}
+
+		#uc,#uf{
+		  text-decoration: none;
+		  color: black;
+		}
+
+		#ufi{
+		  text-decoration: none;
+		  color: black;
+		}
+
+		#ufic{
+		  text-decoration: none;
+		  color: grey;
+		}
+		/*****************End of Home Ui******************/
+	</style>
+	
 </head>
 <body class="page-brand">
 
@@ -31,7 +56,7 @@
 			</li>
 		</ul>
 		<a class="header-logo header-affix-hide margin-left-no margin-right-no" data-offset-top="213" data-spy="affix" href="home.php">FAC Cloud Services</a>
-		<span class="header-logo header-affix margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">Text Fields</span>
+		<span class="header-logo header-affix margin-left-no margin-right-no" data-offset-top="213" data-spy="affix">Home</span>
 		<ul class="nav nav-list pull-right">
 			<li class="dropdown margin-right">
 				<a class="dropdown-toggle padding-left-no padding-right-no" data-toggle="dropdown">
@@ -43,7 +68,7 @@
 				</a>
 				<ul class="dropdown-menu dropdown-menu-right">
 					<li>
-						<a class="padding-right-lg waves-attach" href="javascript:void(0)">
+						<a class="padding-right-lg waves-attach" href="profile.php">
 							<span class="icon icon-lg margin-right">account_box</span>Profile Settings
 						</a>
 					</li>
@@ -67,7 +92,7 @@
 			<div class="menu-content">
 				<ul class="nav">
 					<li class="active">
-						<a class="waves-attach" href="#">Home</a>
+						<a class="waves-attach" href="home.php">Home</a>
 					</li>
 					<li>
 						<a class="waves-attach" href="#">Recent Files</a>
@@ -85,30 +110,53 @@
 					</li>
 					<hr>
 					<li>
-						<a class="waves-attach" href="#">Settings</a>
+						<a class="waves-attach" href="profile.php">Settings</a>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 
+	
+
 	<main class="content">
 		<div class="content-header ui-content-header hidden">
 			<div class="container">
-				<h3 class="content-heading">Folders</h3>
+				<div class="row">
+					<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
+						<h1 class="content-heading">Home</h1>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="container">
 			<div class="ui-card-wrap" id="page-content">
+				<h3 class="content-heading">Categories</h3>
 				<div class="row">
 					<?php 
 						$obj->user_categories($_SESSION['SESS_USER_ID'],$conn);
-						$obj->user_folders($_SESSION['SESS_USER_ID'],$conn);
 					?>
 				</div>
 			</div>	
 		</div>
+		<div class="container">
+			<h3 class="content-heading">Folders</h3>
+			<div class="row">
+				<?php
+					$obj->user_folders($_SESSION['SESS_USER_ID'],$conn);
+				?>
+			</div>
+		</div>
+		<div class="container">
+			<h3 class="content-heading">Files</h3>
+			<div class="row">
+				<?php
+					$obj->user_files($_SESSION['SESS_USER_ID'],$conn);
+				?>
+			</div>
+		</div>
 	</main>
+
 	<footer class="ui-footer">
 		<div class="container">
 			<p>FAC Cloud Services</p>
@@ -208,10 +256,124 @@
 	    </div>
 	</div>
 	
+	<!--Audio Player-->
+		<div aria-hidden="true" class="modal modal-va-middle fade" id="audiotrack" role="dialog" tabindex="-1">
+		    <div class="modal-dialog modal-xs">
+		        <div class="modal-content">
+		            <div class="modal-heading">
+		            	<h2 class="modal-title"></h2>
+		            </div>
+		            <div class="modal-inner">
+						<audio controls>
+							<source src="" type="audio" />
+							<a href="">Download</a>
+						</audio>
+		            </div>
+		            <div class="modal-footer"></div>
+		        </div>
+		    </div>
+		</div>
+
+	<!--Image Viewer-->
+		<div aria-hidden="true" class="modal fade" id="image" role="dialog" tabindex="-1">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-heading">
+						<h2 class="modal-title"></h2>
+					</div>
+					<div class="modal-inner">
+						
+					</div>
+					<div class="modal-footer">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+	<!--Text Viewer-->
+		<div aria-hidden="true" class="modal fade" id="description" role="dialog" tabindex="-1">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-heading">
+						<h2 class="modal-title"></h2>
+					</div>
+					<div class="modal-inner">
+						
+					</div>
+					<div class="modal-footer">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+	<!--Video Player-->
+		<div aria-hidden="true" class="modal fade" id="videocam" role="dialog" tabindex="-1">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-heading">
+						<h2 class="modal-title"></h2>
+					</div>
+					<div class="modal-inner">
+						
+					</div>
+					<div class="modal-footer">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
 	<!-- js -->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/base.min.js"></script>
 	<script src="js/project.min.js"></script>
-	<script type="text/javascript"></script>
+	<script type="text/javascript">
+		$('#audiotrack').on('show.bs.modal', function (event) {
+		  var button = $(event.relatedTarget);
+		  var audio = button.data('whatever'); 
+		  var name = button.data('name');
+		  alert(audio);
+
+		  var modal = $(this);
+		  modal.find('.modal-title').text(name);
+		  modal.find('source').attr("src",audio);
+		  modal.find('a').attr("href",audio);
+		});
+
+		$('#image').on('show.bs.modal', function (event) {
+		  var button = $(event.relatedTarget);
+		  var image = button.data('whatever'); 
+
+		  alert(image);
+
+		  //var modal = $(this)
+		  //modal.find('.modal-title').text('New message to ' + recipient)
+		  //modal.find('.modal-body input').val(recipient)
+		});
+
+		$('#videocam').on('show.bs.modal', function (event) {
+		  var button = $(event.relatedTarget);
+		  var video = button.data('whatever'); 
+
+		  alert(video);
+
+		  //var modal = $(this)
+		  //modal.find('.modal-title').text('New message to ' + recipient)
+		  //modal.find('.modal-body input').val(recipient)
+		});
+
+		$('#description').on('show.bs.modal', function (event) {
+		  var button = $(event.relatedTarget);
+		  var txt = button.data('whatever'); 
+
+		  alert(txt);
+
+		  //var modal = $(this)
+		  //modal.find('.modal-title').text('New message to ' + recipient)
+		  //modal.find('.modal-body input').val(recipient)
+		});
+	</script>
 </body>
 </html>

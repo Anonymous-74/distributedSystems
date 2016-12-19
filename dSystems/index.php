@@ -39,7 +39,7 @@
 											<div class="row">
 												<div class="col-md-10 col-md-push-1">
 													<label class="floating-label" for="input-username">Username</label>
-													<input class="form-control" id="input-username" type="text">
+													<input class="form-control" id="input-username" type="text" autocomplete="off">
 												</div>
 											</div>
 										</div>
